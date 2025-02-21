@@ -11,7 +11,7 @@ on:
 
 jobs:
   generate-matrix:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     outputs:
       images: ${{ steps.generate-matrix.outputs.images }}
@@ -27,7 +27,7 @@ jobs:
 
   patch-and-retag:
     needs: generate-matrix
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         image: ${{ fromJson(needs.generate-matrix.outputs.images) }}
