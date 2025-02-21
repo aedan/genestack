@@ -14,7 +14,7 @@ env:
 
 jobs:
   setup-matrix:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     outputs:
       matrix: ${{ steps.parse-json.outputs.matrix }}
 
@@ -40,7 +40,7 @@ jobs:
 
   migrate-images:
     needs: setup-matrix
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
 
     strategy:
       fail-fast: false
